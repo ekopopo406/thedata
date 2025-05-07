@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+    <jdbcConnection connectionURL="jdbc:postgresql://localhost:5432/lab-data" driverClass="org.postgresql.Driver" password="postgres" userId="postgres" />
+    <javaModelGenerator targetPackage="com.lab.model" targetProject="thedata" />
+    <javaClientGenerator targetPackage="com.lab.mapper" targetProject="thedata" type="XMLMAPPER" />
+    <table schema="public" tableName="test">
+      <columnOverride column="???" property="???" />
+    </table>
+  </context>
+</generatorConfiguration>

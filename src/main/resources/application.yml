@@ -1,5 +1,40 @@
-spring:
-  application:
-    name: lab data
 server:
   port: 8089
+
+spring:
+  application:
+    name: lab-data
+  datasource: 
+    master: 
+      jdbcUrl: jdbc:postgresql://localhost:5432/lab-data
+      username: postgres
+      password: postgres
+      driverClassName: org.postgresql.Driver
+      hikari: 
+        pool-name: hikari-postgresql
+        minimum-idle: 5
+        maximum-pool-size: 20
+        max-lifetime: 300000
+
+#Swagger-openAPI
+springdoc: 
+  packages-to-scan: com.lab.controller
+  api-docs: 
+    enabled: true
+    path: /ld-api-docs
+  swagger-ui: 
+    enabled: true
+    path: /ld-swagger
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+
+labdata: 
+  openapi: 
+    dev-url: http://localhost:8089
+    prod-url: https://bezkoder-api.com
+    
+#data source
+ 
+  
