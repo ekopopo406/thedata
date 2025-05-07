@@ -38,6 +38,16 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.5.5</version>
+		</dependency> 
+		<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+        <dependency>
+		    <groupId>org.mybatis.generator</groupId>
+		    <artifactId>mybatis-generator-core</artifactId>
+		    <version>1.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -90,6 +100,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+	          <groupId>org.mybatis.generator</groupId>
+	          <artifactId>mybatis-generator-maven-plugin</artifactId>
+	          <version>1.4.2</version>
+	        </plugin>
 		</plugins>
 	</build>
+		  
 </project>

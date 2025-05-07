@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry location="H:/eclipse/postgresql-42.7.3.jar" />
+
+	<context id="postgres" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection
+			connectionURL="jdbc:postgresql://localhost:5432/labdata?Characterencoding=utf8"
+			driverClass="org.postgresql.Driver"
+			password="postgres"
+			userId="postgres">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.lab.model"
+			targetProject="src/main/java" />
+
+		<sqlMapGenerator targetPackage="com.lab.xml"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.lab.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+		<table schema="" tableName="tutorial_table"
+			domainObjectName="Tutorial"
+			enableCountByExample="true"
+			enableUpdateByExample="true"
+			enableDeleteByExample="true"
+			enableSelectByExample="true"
+			selectByExampleQueryId="true"
+			enableDeleteByPrimaryKey="true"
+			enableInsert="true"
+			enableUpdateByPrimaryKey="true">
+			<columnOverride column="id_" property="id" jdbcType="INTEGER" />
+			<columnOverride column="title" property="title" jdbcType="VARCHAR" />
+			<columnOverride column="description" property="description"
+				jdbcType="VARCHAR" />
+			<columnOverride column="published" property="published"
+				javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
+		</table>
+	</context>
+</generatorConfiguration>

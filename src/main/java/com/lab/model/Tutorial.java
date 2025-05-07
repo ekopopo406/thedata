@@ -1,31 +1,43 @@
 package com.lab.model;
 
-import lombok.Data;
-
-@Data
 public class Tutorial {
+    private Integer id;
 
-  private long id = 0;
+    private String title;
 
-  private String title;
+    private String description;
 
-  private String description;
+    private Boolean published;
 
-  private boolean published;
+    public Integer getId() {
+        return id;
+    }
 
-  public Tutorial() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public Tutorial(String title, String description, boolean published) {
-    this.title = title;
-    this.description = description;
-    this.published = published;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  @Override
-  public String toString() {
-    return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
-  }
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getPublished() {
+        return published;
+    }
+
+    public void setPublished(Boolean published) {
+        this.published = published;
+    }
 }
