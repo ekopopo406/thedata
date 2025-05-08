@@ -2,7 +2,12 @@ package com.lab.model;
 
 import java.io.Serializable;
 
-public class Tutorial  implements Serializable{
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName("tutorial_table")
+public class Tutorial implements Serializable{
 	
 	
     /**
@@ -10,6 +15,7 @@ public class Tutorial  implements Serializable{
 	 */
 	private static final long serialVersionUID = -7473757553955627600L;
 
+	@TableId("id_")
 	private Long id;
 
     private String title;
@@ -18,7 +24,11 @@ public class Tutorial  implements Serializable{
 
     private Boolean published;
 
-    public Tutorial(String title, String description, Boolean published) {
+    public Tutorial() {
+		super();
+	}
+
+	public Tutorial(String title, String description, Boolean published) {
 		this.title = title;
 		this.description = description;
 		this.published = published;

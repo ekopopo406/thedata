@@ -60,7 +60,6 @@ public class TutorialService {
     tutorials.removeAll(tutorials);
   }
   
-  @ReadOnly
   public List<Tutorial> findByPublished(boolean isPublished) {
 	  List<Tutorial> tutorials = new ArrayList<Tutorial>();
 	  

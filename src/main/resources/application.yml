@@ -7,7 +7,7 @@ spring:
     name: lab-data
   datasource: 
     master: 
-      jdbcUrl: jdbc:postgresql://localhost:5432/lab-data
+      jdbcUrl: jdbc:postgresql://localhost:5432/labdata
       username: postgres
       password: postgres
       driverClassName: org.postgresql.Driver

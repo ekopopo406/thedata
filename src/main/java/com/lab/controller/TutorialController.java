@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lab.common.Constants;
+import com.lab.common.RestResponse;
 import com.lab.model.Tutorial;
 import com.lab.service.TutorialService;
 
@@ -28,7 +29,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Tutorial", description = "Tutorial management APIs")
-@CrossOrigin(origins = "http://localhost:8089")
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
@@ -146,16 +146,13 @@ public class TutorialController {
 
   @Operation(summary = "Retrieve all published Tutorials", tags = { "tutorials", "get", "filter" })
   @GetMapping("/tutorials/published")
-  public ResponseEntity<List<Tutorial>> findByPublished() {
+  public RestResponse<List<Tutorial>> findByPublished() {
     try {
       List<Tutorial> tutorials = tutorialService.findByPublished(true);
-
-      if (tutorials.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-      return new ResponseEntity<>(tutorials, HttpStatus.OK);
+      return RestResponse.error(Constants.RESPONSE_SUCCESS_CODE,"ashkdajshdj");
+      //return RestResponse.success(Constants.RESPONSE_SUCCESS_CODE,Constants.RESPONSE_SUCCESS,tutorials);
     } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    	return RestResponse.error(Constants.RESPONSE_SUCCESS_CODE,e.getMessage());
     }
   }
   
