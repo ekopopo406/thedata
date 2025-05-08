@@ -44,7 +44,7 @@ public class TutorialController {
   public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
     try {
       Tutorial _tutorial = tutorialService
-          .save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), tutorial.isPublished()));
+          .save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), tutorial.getPublished()));
       return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -110,7 +110,7 @@ public class TutorialController {
     if (_tutorial != null) {
       _tutorial.setTitle(tutorial.getTitle());
       _tutorial.setDescription(tutorial.getDescription());
-      _tutorial.setPublished(tutorial.isPublished());
+      _tutorial.setPublished(tutorial.getPublished());
       return new ResponseEntity<>(tutorialService.save(_tutorial), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -158,4 +158,5 @@ public class TutorialController {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+  
 }

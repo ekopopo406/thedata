@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-	<classPathEntry location="H:/eclipse/postgresql-42.7.3.jar" />
+	<classPathEntry location="C:/baidunetdiskdownload/postgresql-42.7.3.jar" />
 
 	<context id="postgres" targetRuntime="MyBatis3">
 		<commentGenerator>
@@ -10,7 +10,7 @@
 		</commentGenerator>
 
 		<jdbcConnection
-			connectionURL="jdbc:postgresql://localhost:5432/labdata?Characterencoding=utf8"
+			connectionURL="jdbc:postgresql://localhost:5432/lab-data?Characterencoding=utf8"
 			driverClass="org.postgresql.Driver"
 			password="postgres"
 			userId="postgres">
@@ -22,15 +22,15 @@
 
 		<javaModelGenerator targetPackage="com.lab.model"
 			targetProject="src/main/java" />
-
-		<sqlMapGenerator targetPackage="com.lab.xml"
+		
+		<sqlMapGenerator targetPackage="mapper"
 			targetProject="src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator targetPackage="com.lab.mapper"
 			targetProject="src/main/java" type="XMLMAPPER" />
-
+			
 		<table schema="" tableName="tutorial_table"
 			domainObjectName="Tutorial"
 			enableCountByExample="true"
@@ -41,9 +41,12 @@
 			enableDeleteByPrimaryKey="true"
 			enableInsert="true"
 			enableUpdateByPrimaryKey="true">
-			<columnOverride column="id_" property="id" jdbcType="INTEGER" />
-			<columnOverride column="title" property="title" jdbcType="VARCHAR" />
-			<columnOverride column="description" property="description"
+			<columnOverride column="id_" property="id" javaType="java.lang.Long"
+				jdbcType="INTEGER" />
+			<columnOverride column="title" property="title"
+				javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="description" javaType="java.lang.String"
+				property="description"
 				jdbcType="VARCHAR" />
 			<columnOverride column="published" property="published"
 				javaType="java.lang.Boolean" jdbcType="BOOLEAN" />

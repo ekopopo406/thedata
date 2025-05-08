@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.apache.ibatis.plugin.Interceptor;
+import org.aopalliance.intercept.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +14,9 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.baomidou.mybatisplus.annotation.DbType;
@@ -40,6 +43,8 @@ public class DataSourceConfig {
      * @param masterDataSource
      * @param slaveDataSource
      * @return
+     * 
+     * 预先定义多数据源备用，当前实际是单一PostgreSQL数据源
      */
     @Primary
     @Bean(name = "dynamicDataSource")
@@ -65,11 +70,13 @@ public class DataSourceConfig {
     public SqlSessionFactory sqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dataSource) throws Exception {
     	 // 导入mybatissqlsession配置
         MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
+        
         // 指明数据源
         sessionFactory.setDataSource(dataSource);
-        //多数据源必须在定义数据源时添加以下2句，否则分页插件无效
-        Interceptor[] interceptors = new Interceptor[] { mybatisPlusInterceptor() };
-        sessionFactory.setPlugins(interceptors);
+        
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*Mapper.xml"));
+        
+        sessionFactory.setPlugins(mybatisPlusInterceptor());
         // 返回SqlSessionFactory实例，用于创建SqlSession，使用SqlSession调用sql时不需要指定数据源，因为就在此处指定了
         return sessionFactory.getObject();
     }

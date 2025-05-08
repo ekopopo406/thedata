@@ -1,6 +1,7 @@
 server:
   port: 8089
 
+#data source
 spring:
   application:
     name: lab-data
@@ -34,7 +35,12 @@ labdata:
   openapi: 
     dev-url: http://localhost:8089
     prod-url: https://bezkoder-api.com
-    
-#data source
+
+# application.yml
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+     
+
  
   

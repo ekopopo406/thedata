@@ -3,13 +3,20 @@ package com.lab.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.lab.aop.ReadOnly;
+import com.lab.mapper.TutorialMapper;
 import com.lab.model.Tutorial;
 
 @Service
 public class TutorialService {
-
+	
+	@Autowired
+	private TutorialMapper tutorialMapper;
+	
   static List<Tutorial> tutorials = new ArrayList<Tutorial>();
   static long id = 0;
 
@@ -52,8 +59,18 @@ public class TutorialService {
   public void deleteAll() {
     tutorials.removeAll(tutorials);
   }
-
+  
+  @ReadOnly
   public List<Tutorial> findByPublished(boolean isPublished) {
-    return tutorials.stream().filter(tutorial -> isPublished == tutorial.isPublished()).toList();
+	  List<Tutorial> tutorials = new ArrayList<Tutorial>();
+	  
+	  QueryWrapper<Tutorial> wrapper = new QueryWrapper<Tutorial>();
+	  wrapper.eq("published", true);
+	  tutorials =  tutorialMapper.selectList(wrapper);
+	  
+	  if(tutorials.isEmpty()) {
+		  System.out.println("0");
+	  }
+    return tutorials.stream().filter(tutorial -> isPublished == tutorial.getPublished()).toList();
   }
 }
